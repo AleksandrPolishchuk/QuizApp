@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using QuizAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.ServicesAddDbContext<QuizDbContext>(options => options.UseSqlServer());
+builder.Services.AddDbContext<QuizDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
