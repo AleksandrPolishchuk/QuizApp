@@ -28,7 +28,12 @@ export default function Login() {
             <form noValidate autoComplete="off">
               <TextField label="Email" name="email" variant="outlined" />
               <TextField label="Name" name="name" variant="outlined" />
-              <Button type="submit" variant="contained" size="large">
+              <Button
+                type="submit"
+                variant="contained"
+                size="large"
+                sx={{ width: "90%" }}
+              >
                 Start
               </Button>
             </form>
