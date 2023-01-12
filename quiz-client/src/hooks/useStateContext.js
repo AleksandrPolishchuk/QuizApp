@@ -3,11 +3,16 @@ import React, { createContext, useContext, useState } from "react";
 export const stateContext = createContext();
 
 const getFreshContext = () => {
-  return {
-    participantId: 0,
-    timeTaken: 0,
-    selectedOptions: [],
-  };
+  if (localStorage.getItem("context") === null)
+    localStorage.setItem(
+      "context",
+      JSON.stringify({
+        participantId: 0,
+        timeTaken: 0,
+        selectedOptions: [],
+      })
+    );
+  return JSON.parse(localStorage.getItem("context"));
 };
 
 export default function useStateContext() {
