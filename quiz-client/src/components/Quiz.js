@@ -28,6 +28,14 @@ export default function Quiz() {
     <Card>
       <CardContent>
         <Typography variant="h6">{qns[qnIndex].qnInwords}</Typography>
+        <List>
+          {qns[qnIndex].options.map((item, idx) => (
+            <ListItemButton key={idx} disableRipple>
+              <div>{item}</div>
+            </ListItemButton>
+          ))}
+          <ListItemButton></ListItemButton>
+        </List>
       </CardContent>
     </Card>
   ) : null;
