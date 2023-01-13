@@ -1,10 +1,20 @@
-import React from "react";
-import useStateContext from "../hooks/useStateContext";
+import React, { useEffect, useState } from "react";
+import { createAPIEndpoint, ENDPOINTS } from "../api";
 
 export default function Quiz() {
-  const { context, setContext } = useStateContext();
+  const [qns, setQns] = useState([]);
 
-  console.log(context);
+  useEffect(() => {
+    createAPIEndpoint(ENDPOINTS.question)
+      .fetch()
+      .then((res) => {
+        setQns(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return <div>Question</div>;
 }

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 export const stateContext = createContext();
 
@@ -28,6 +28,10 @@ export default function useStateContext() {
 
 export function ContextProvider({ children }) {
   const [context, setContext] = useState(getFreshContext());
+
+  useEffect(() => {
+    localStorage.setItem("context", JSON.stringify(context));
+  }, [context]);
 
   return (
     <stateContext.Provider value={{ context, setContext }}>
