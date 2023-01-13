@@ -1,4 +1,10 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  List,
+  ListItemButton,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 
@@ -21,7 +27,7 @@ export default function Quiz() {
   return qns.length !== 0 ? (
     <Card>
       <CardContent>
-        <Typography variant="h6">{qns[qnIndex].qnInWords}</Typography>
+        <Typography variant="h6">{qns[qnIndex].qnInwords}</Typography>
       </CardContent>
     </Card>
   ) : null;
