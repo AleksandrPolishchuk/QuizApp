@@ -1,6 +1,7 @@
 import {
   Card,
   CardContent,
+  CardHeader,
   List,
   ListItemButton,
   Typography,
@@ -25,13 +26,16 @@ export default function Quiz() {
   }, []);
 
   return qns.length !== 0 ? (
-    <Card>
+    <Card sx={{ maxWidth: 640, mx: "auto", mt: 5 }}>
+      <CardHeader title={"Question " + (qnIndex + 1) + " of 5"} />
       <CardContent>
         <Typography variant="h6">{qns[qnIndex].qnInwords}</Typography>
         <List>
           {qns[qnIndex].options.map((item, idx) => (
             <ListItemButton key={idx} disableRipple>
-              <div>{item}</div>
+              <div>
+                <b>{String.fromCharCode(65 + idx) + " . "}</b> {item}
+              </div>
             </ListItemButton>
           ))}
           <ListItemButton></ListItemButton>
