@@ -2,6 +2,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  CardMedia,
   LinearProgress,
   List,
   ListItemButton,
@@ -9,7 +10,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { createAPIEndpoint, ENDPOINTS } from "../api";
+import { BASE_URL, createAPIEndpoint, ENDPOINTS } from "../api";
 import { getFormatedTime } from "../helper";
 import useStateContext from "../hooks/useStateContext";
 
@@ -77,6 +78,12 @@ export default function Quiz() {
           value={((qnIndex + 1) * 100) / 5}
         />
       </Box>
+      {qns[qnIndex].imageName != null ? (
+        <CardMedia
+          component="img"
+          image={BASE_URL + "images/" + qns[qnIndex].imageName}
+        />
+      ) : null}
       <CardContent>
         <Typography variant="h6">{qns[qnIndex].qnInwords}</Typography>
         <List>
