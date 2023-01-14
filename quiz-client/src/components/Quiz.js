@@ -11,11 +11,13 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 import { getFormatedTime } from "../helper";
+import useStateContext from "../hooks/useStateContext";
 
 export default function Quiz() {
   const [qns, setQns] = useState([]);
   const [qnIndex, setQnIndex] = useState(0);
   const [timeTaken, setTimeTaken] = useState(0);
+  const { context, setContext } = useStateContext();
   let timer;
 
   const startTimer = () => {
@@ -40,6 +42,22 @@ export default function Quiz() {
     };
   }, []);
 
+  const updateAnswer = (qnId, optionIdx) => {
+    const temp = [...context.selectedOptions];
+    temp.push({
+      qnId,
+      selected: optionIdx,
+    });
+
+    if (qnIndex < 4) {
+      setContext({ selectedOptions: [...temp] });
+      setQnIndex(qnIndex + 1);
+    } else {
+      setContext({ selectedOptions: [...temp], timeTaken });
+      // navigate result component
+    }
+  };
+
   return qns.length !== 0 ? (
     <Card
       sx={{
@@ -63,7 +81,10 @@ export default function Quiz() {
         <Typography variant="h6">{qns[qnIndex].qnInwords}</Typography>
         <List>
           {qns[qnIndex].options.map((item, idx) => (
-            <ListItemButton key={idx}>
+            <ListItemButton
+              key={idx}
+              onClick={() => updateAnswer(qns[qnIndex].qnId, idx)}
+            >
               <div>
                 <b>{String.fromCharCode(65 + idx) + " . "}</b> {item}
               </div>
