@@ -23,6 +23,10 @@ export default function useStateContext() {
     setContext: (obj) => {
       setContext({ ...context, ...obj });
     },
+    resetContext: () => {
+      localStorage.removeItem("context");
+      setContext(getFreshContext());
+    },
   };
 }
 

@@ -28,6 +28,10 @@ export default function Quiz() {
   };
 
   useEffect(() => {
+    setContext({
+      TimeTaken: 0,
+      selectedOption: [],
+    });
     createAPIEndpoint(ENDPOINTS.question)
       .fetch()
       .then((res) => {
@@ -82,6 +86,7 @@ export default function Quiz() {
         <CardMedia
           component="img"
           image={BASE_URL + "images/" + qns[qnIndex].imageName}
+          sx={{ width: "auto", m: "10px auto" }}
         />
       ) : null}
       <CardContent>
