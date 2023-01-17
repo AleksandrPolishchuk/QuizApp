@@ -1,6 +1,14 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { typography } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 import { getFormatedTime } from "../helper";
 import useStateContext from "../hooks/useStateContext";
@@ -9,6 +17,7 @@ export default function Result() {
   const { context, setContext } = useStateContext();
   const [score, setScore] = useState(0);
   const [qnAnswers, setQnAnswers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const ids = context.selectedOptions.map((x) => x.qnId);
@@ -31,6 +40,14 @@ export default function Result() {
     setScore(tempScore);
   };
 
+  const restart = () => {
+    setContext({
+      timerTaken: 0,
+      selectedOptions: [],
+    });
+    navigate("/quiz");
+  };
+
   return (
     <Card
       sx={{ mt: 5, display: "flex", width: "100%", maxWidth: 640, mx: "auto" }}
@@ -45,6 +62,17 @@ export default function Result() {
           <Typography variant="h6">
             Took {getFormatedTime(context.timeTaken) + " mins"}
           </Typography>
+          <Button variant="contained" sx={{ mx: 1 }} size="small">
+            Submit
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ mx: 1 }}
+            size="small"
+            onClick={restart}
+          >
+            Re-try
+          </Button>
         </CardContent>
       </Box>
       <CardMedia component="img" sx={{ width: 220 }} image="./result.png" />
