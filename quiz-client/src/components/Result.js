@@ -48,6 +48,21 @@ export default function Result() {
     navigate("/quiz");
   };
 
+  const submitScore = () => {
+    createAPIEndpoint(ENDPOINTS.participant)
+      .put(context.participantId, {
+        participantId: context.participantId,
+        score: score,
+        timeTaken: context.timeTaken,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Card
       sx={{ mt: 5, display: "flex", width: "100%", maxWidth: 640, mx: "auto" }}
@@ -62,7 +77,12 @@ export default function Result() {
           <Typography variant="h6">
             Took {getFormatedTime(context.timeTaken) + " mins"}
           </Typography>
-          <Button variant="contained" sx={{ mx: 1 }} size="small">
+          <Button
+            variant="contained"
+            sx={{ mx: 1 }}
+            size="small"
+            onClick={submitScore}
+          >
             Submit
           </Button>
           <Button
