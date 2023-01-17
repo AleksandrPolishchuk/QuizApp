@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -17,6 +18,7 @@ export default function Result() {
   const { context, setContext } = useStateContext();
   const [score, setScore] = useState(0);
   const [qnAnswers, setQnAnswers] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,7 +58,10 @@ export default function Result() {
         timeTaken: context.timeTaken,
       })
       .then((res) => {
-        console.log(res);
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 4000);
       })
       .catch((err) => {
         console.log(err);
@@ -93,6 +98,17 @@ export default function Result() {
           >
             Re-try
           </Button>
+          <Alert
+            severity="success"
+            variant="string"
+            sx={{
+              width: "60%",
+              m: "auto",
+              visibility: showAlert ? "visible" : "hidden",
+            }}
+          >
+            Score Updated.
+          </Alert>
         </CardContent>
       </Box>
       <CardMedia component="img" sx={{ width: 220 }} image="./result.png" />
