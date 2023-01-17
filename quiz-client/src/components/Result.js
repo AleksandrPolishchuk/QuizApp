@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 import { getFormatedTime } from "../helper";
 import useStateContext from "../hooks/useStateContext";
+import { green } from "@mui/material/colors";
 
 export default function Result() {
   const { context, setContext } = useStateContext();
@@ -77,7 +78,10 @@ export default function Result() {
           <Typography variant="h4">Congradulations!</Typography>
           <Typography variant="h6">YOUR SCORE</Typography>
           <Typography variant="h5" sx={{ fontWeight: 600 }}>
-            <Typography variant="span">{score}</Typography>/5
+            <Typography variant="span" color={green[500]}>
+              {score}
+            </Typography>
+            /5
           </Typography>
           <Typography variant="h6">
             Took {getFormatedTime(context.timeTaken) + " mins"}
