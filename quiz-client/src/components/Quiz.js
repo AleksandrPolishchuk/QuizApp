@@ -32,7 +32,7 @@ export default function Quiz() {
   useEffect(() => {
     setContext({
       TimeTaken: 0,
-      selectedOption: [],
+      selectedOptions: [],
     });
     createAPIEndpoint(ENDPOINTS.question)
       .fetch()
