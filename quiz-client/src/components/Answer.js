@@ -11,13 +11,19 @@ import { Box } from "@mui/system";
 import React from "react";
 import { BASE_URL } from "../api";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-import { green, red } from "@mui/material/colors";
+import { green, red, grey } from "@mui/material/colors";
 
 export default function Answer({ qnAnswers }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+  };
+
+  const markCorrectOrNot = (qna, idx) => {
+    if ([qna.answer, qna.selected].includes(idx)) {
+      return { sx: { color: qna.answer == idx ? green[500] : red[500] } };
+    }
   };
 
   return (
@@ -42,7 +48,7 @@ export default function Answer({ qnAnswers }) {
               {item.qnInWords}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails sx={{ backgroundColor: grey[900] }}>
             {item.imageName ? (
               <CardMedia
                 component="img"
@@ -53,7 +59,7 @@ export default function Answer({ qnAnswers }) {
             <List>
               {item.options.map((x, i) => (
                 <ListItem key={i}>
-                  <Typography>
+                  <Typography {...markCorrectOrNot(item, i)}>
                     <b>{String.fromCharCode(65 + i) + " . "}</b>
                     {x}
                   </Typography>
