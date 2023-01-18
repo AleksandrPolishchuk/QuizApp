@@ -11,6 +11,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import { BASE_URL } from "../api";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import { green, red } from "@mui/material/colors";
 
 export default function Answer({ qnAnswers }) {
   const [expanded, setExpanded] = React.useState(false);
@@ -28,7 +29,15 @@ export default function Answer({ qnAnswers }) {
           expanded={expanded === j}
           onChange={handleChange(j)}
         >
-          <AccordionSummary expandIcon={<ExpandCircleDownIcon />}>
+          <AccordionSummary
+            expandIcon={
+              <ExpandCircleDownIcon
+                sx={{
+                  color: item.answer === item.selected ? green[500] : red[500],
+                }}
+              />
+            }
+          >
             <Typography sx={{ width: "90%", flexShrink: 0 }}>
               {item.qnInWords}
             </Typography>
