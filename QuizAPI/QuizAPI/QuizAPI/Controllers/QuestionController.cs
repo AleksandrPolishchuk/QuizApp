@@ -28,7 +28,7 @@ namespace QuizAPI.Controllers
                 .Select(x => new
                 {
                     QnId = x.QnId,
-                    QnInwords = x.QnInWords,
+                    QnInWords = x.QnInWords,
                     ImageName = x.ImageName,
                     Options = new string[] {x.Option1, x.Option2, x.Option3, x.Option4}
                 })
@@ -98,7 +98,7 @@ namespace QuizAPI.Controllers
                     QnInWords = y.QnInWords,
                     ImageName = y.ImageName,
                     Options = new string[] { y.Option1, y.Option2, y.Option3, y.Option4 },
-                    Anwer = y.Answer
+                    Answer = y.Answer
                 })).ToListAsync();
             return Ok(answers);
         }

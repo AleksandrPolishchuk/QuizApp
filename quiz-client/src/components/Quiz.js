@@ -92,10 +92,11 @@ export default function Quiz() {
         />
       ) : null}
       <CardContent>
-        <Typography variant="h6">{qns[qnIndex].qnInwords}</Typography>
+        <Typography variant="h6">{qns[qnIndex].qnInWords}</Typography>
         <List>
           {qns[qnIndex].options.map((item, idx) => (
             <ListItemButton
+              disableRipple
               key={idx}
               onClick={() => updateAnswer(qns[qnIndex].qnId, idx)}
             >

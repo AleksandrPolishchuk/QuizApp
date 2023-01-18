@@ -22,7 +22,7 @@ export default function Answer({ qnAnswers }) {
 
   const markCorrectOrNot = (qna, idx) => {
     if ([qna.answer, qna.selected].includes(idx)) {
-      return { sx: { color: qna.answer == idx ? green[500] : red[500] } };
+      return { sx: { color: qna.answer === idx ? green[500] : red[500] } };
     }
   };
 

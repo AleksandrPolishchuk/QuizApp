@@ -33,7 +33,8 @@ export default function Result() {
         }));
         setQnAnswers(qna);
         calculateScore(qna);
-      });
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const calculateScore = (qna) => {

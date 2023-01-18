@@ -51,7 +51,6 @@ export default function Login() {
 
   return (
     <Center>
-      {context.participantId}
       <Card sx={{ width: 400 }}>
         <CardContent sx={{ textAlign: "center" }}>
           <Typography variant="h3" sx={{ my: 3 }}>
