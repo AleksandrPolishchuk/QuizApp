@@ -55,7 +55,8 @@ export default function Quiz() {
       qnId,
       selected: optionIdx,
     });
-
+    if (qnIndex === 4)
+      for (let i = 0; i < temp.length; i++) console.log(temp[i]);
     if (qnIndex < 4) {
       setContext({ selectedOptions: [...temp] });
       setQnIndex(qnIndex + 1);

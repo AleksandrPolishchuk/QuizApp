@@ -24,6 +24,7 @@ export default function Result() {
 
   useEffect(() => {
     const ids = context.selectedOptions.map((x) => x.qnId);
+    console.log("ids: " + ids);
     createAPIEndpoint(ENDPOINTS.getAnswers)
       .post(ids)
       .then((res) => {
@@ -33,6 +34,10 @@ export default function Result() {
         }));
         setQnAnswers(qna);
         calculateScore(qna);
+        for (let i = 0; i < qna.length; i++)
+          console.log(
+            "qna>>" + `${i} : a=${qna[i].answer} / so=${qna[i].selectedOptions}`
+          );
       })
       .catch((err) => console.log(err));
   }, []);
