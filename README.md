@@ -1,3 +1,3 @@
 QuizeApp
-backend - C#, Entity Framework Core, ASP.NET Core 7, MSSQL
-frontend - React.js, JavaScript
+1. backend - C#, Entity Framework Core, ASP.NET Core 7, MSSQL
+2. frontend - React.js, JavaScript
